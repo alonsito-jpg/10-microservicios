@@ -1,0 +1,111 @@
+services:
+  # -----------------------------------------------------------
+  # CONTENEDOR 1: LA BASE DE DATOS MYSQL
+  # -----------------------------------------------------------
+  db-servicio-1:
+    image: mysql:8.0
+    container_name: mysql_1
+    environment:
+      MYSQL_ROOT_PASSWORD: clave_maestra_root
+      MYSQL_DATABASE: db_micro_1
+      MYSQL_USER: desarrollador
+      MYSQL_PASSWORD: password_seguro_123
+    ports:
+      - "3306:3306"
+    networks:
+      - red_interna_proyecto
+    volumes:
+      - vol_db_1:/var/lib/mysql
+  
+  db-servicio-2:
+    image: mysql:8.0
+    container_name: mysql_2
+    environment:
+      MYSQL_ROOT_PASSWORD: clave_maestra_root
+      MYSQL_DATABASE: db_micro_2
+      MYSQL_USER: desarrollador
+      MYSQL_PASSWORD: password_seguro_123
+    ports: 
+      - "3307:3306" #el puerto siempre sera 3306, el externo cambia
+    networks:
+      - red_interna_proyecto
+    volumes:
+      - vol_db_2:/var/lib/mysql
+
+  db-servicio-3:
+    image: mysql:8.0
+    container_name: mysql_3
+    environment:
+      MYSQL_ROOT_PASSWORD: clave_maestra_root
+      MYSQL_DATABASE: db_micro_3
+      MYSQL_USER: desarrollador
+      MYSQL_PASSWORD: password_seguro_123
+    ports:
+      - "3308:3306"
+    networks:
+      - red_interna_proyecto
+    volumes:
+      - vol_db_3:/var/lib/mysql
+
+
+
+  # 
+  # MICROSERVICIO 1: AUTENTICACIÓN (PUERTO 8081)
+  #
+  auth-service:
+    image: maven:3.9-eclipse-temurin-21
+    container_name: aduana_auth_container
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db-servicio-1
+    volumes:
+      - ./codigo-fuente/auth-service:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    networks:
+      - red_interna_proyecto
+  
+  
+  #
+  #Microservicio 2: VIAJEROS (Puerto 8082)
+  #
+  traveler-service:
+    image: maven:3.9-eclipse-temurin-21
+    container_name: aduana_traveler_container
+    ports:
+      - "8082:8080"
+    depends_on:
+      - db-servicio-2
+    volumes:
+      - ./codigo-fuente/traveler-service:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    networks:
+      - red_interna_proyecto
+
+  #
+  #MICROSERVICIO 3: VEHICULOS(Puerto  8083)
+  #
+  vehicle-service:
+    image: maven:3.9-eclipse-temurin-21
+    container_name: aduana_vehicle_container
+    ports:
+     - "8083:8080"
+    depends_on:
+      - db-servicio-3
+    volumes:
+      - ./codigo-fuente/vehicle-service:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    networks:
+     - red_interna_proyecto
+     
+networks:
+  red_interna_proyecto:
+    driver: bridge
+
+volumes:
+  vol_db_1:
+  vol_db_2:
+  vol_db_3:
