@@ -47,8 +47,36 @@ services:
     volumes:
       - vol_db_3:/var/lib/mysql
 
+  db-servicio-4:
+    image: mysql:8.0
+    container_name: mysql_4
+    environment:
+      MYSQL_ROOT_PASSWORD: clave_maestra_root
+      MYSQL_DATABASE: db_micro_4
+      MYSQL_USER: desarrollador
+      MYSQL_PASSWORD: password_seguro_123
+    ports:
+      - "3309:3306"
+    networks:
+      - red_interna_proyecto
+    volumes:
+      - vol_db_4:/var/lib/mysql
 
-
+  
+  db-servicio-5:
+    image: mysql:8.0
+    container_name: mysql_5
+    environment:
+      MYSQL_ROOT_PASSWORD: clave_maestra_root
+      MYSQL_DATABASE: db_micro_5
+      MYSQL_USER: desarrollador
+      MYSQL_PASSWORD: password_seguro_123
+    ports:
+      - "3310:3306"
+    networks:
+      - red_interna_proyecto
+    volumes:
+      - vol_db_5:/var/lib/mysql
   # 
   # MICROSERVICIO 1: AUTENTICACIÓN (PUERTO 8081)
   #
@@ -100,7 +128,43 @@ services:
     command: tail -f /dev/null
     networks:
      - red_interna_proyecto
-     
+
+  #  Micro servicio 4: declaracion(Puerto 8084) 
+  #
+  #
+  declaracion-service: #cambio al español queda preguntar como arreglar los errores ortograficos
+    image: maven:3.9-eclipse-temurin-21
+    container_name: aduana_declaracion_container
+    ports:
+      - "8084:8080"
+    depends_on:
+      - db-servicio-4
+    volumes:
+      - ./codigo-fuente/declaracion-service:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    networks:
+      - red_interna_proyecto
+
+
+  #
+  #Micro servico 5: Bodega(Control de inventario)
+  #
+  bodega-service:
+    image: maven:3.9-eclipse-temurin-21
+    container_name: aduana_bodega_container
+    ports:
+      - "8085:8080"
+    depends_on:
+      - db-servicio-5
+    volumes:
+      - ./codigo-fuente/bodega-service:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    networks:
+      - red_interna_proyecto
+
+
 networks:
   red_interna_proyecto:
     driver: bridge
@@ -109,3 +173,5 @@ volumes:
   vol_db_1:
   vol_db_2:
   vol_db_3:
+  vol_db_4:
+  vol_db_5:
