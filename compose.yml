@@ -165,7 +165,7 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: clave_maestra_root
-      MYSQL_DATABASE: db_miro_10
+      MYSQL_DATABASE: db_micro_10
       MYSQL_USER: desarrollador
       MYSQL_PASSWORD: password_seguro_123
     ports:
@@ -185,9 +185,9 @@ services:
     depends_on:
       - db-servicio-1
     volumes:
-      - ./codigo-fuente/auth-service:/app
+      - ./codigo-fuente/auth-service/auth-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto
   #
@@ -201,9 +201,9 @@ services:
     depends_on:
       - db-servicio-2
     volumes:
-      - ./codigo-fuente/traveler-service:/app
+      - ./codigo-fuente/traveler-service/traveler-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto
 
@@ -220,7 +220,7 @@ services:
     volumes:
       - ./codigo-fuente/vehicle-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
      - red_interna_proyecto
 
@@ -235,9 +235,9 @@ services:
     depends_on:
       - db-servicio-4
     volumes:
-      - ./codigo-fuente/declaracion-service:/app
+      - ./codigo-fuente/declaracion-service/declaracion-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto
 
@@ -255,7 +255,7 @@ services:
     volumes:
       - ./codigo-fuente/bodega-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto
 
@@ -270,9 +270,9 @@ services:
     depends_on:
       - db-servicio-6
     volumes:
-      - ./codigo-fuente/personal-service:/app #persistencia en el host
+      - ./codigo-fuente/personal-service/personal-service:/app #persistencia en el host
     working_dir: /app
-    command: tail -f /dev/null  #Mantiene el contenedor vivo para programar  
+    command: mvn spring-boot:run #Mantiene el contenedor vivo para programar  
     networks:
       - red_interna_proyecto
 
@@ -289,7 +289,7 @@ services:
     volumes:
       - ./codigo-fuente/inspeccion-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto
 
@@ -306,7 +306,7 @@ services:
     volumes:
       - ./codigo-fuente/seguimiento-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto
 
@@ -323,7 +323,7 @@ services:
     volumes:
       - ./codigo-fuente/rutas-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto
   
@@ -338,9 +338,9 @@ services:
     depends_on:
       - db-servicio-10
     volumes:
-      - ./codigo-fuente/noti-service:/app
+      - ./codigo-fuente/noti-service/noti-service:/app
     working_dir: /app
-    command: tail -f /dev/null
+    command: mvn spring-boot:run
     networks:
       - red_interna_proyecto  
 
