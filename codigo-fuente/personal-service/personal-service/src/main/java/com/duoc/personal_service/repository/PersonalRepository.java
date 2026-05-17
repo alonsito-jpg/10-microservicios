@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository // Indicamos que se encargué de la persistencia 
-public interface PersonalRepository {
-
-
+public interface PersonalRepository extends JpaRepository<Personal, Long> {
+    // JpaRepository proporciona métodos CRUD básicos para la entidad Personal
 }

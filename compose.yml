@@ -181,7 +181,7 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_auth_container
     ports:
-      - "8081:8080"
+      - "8080:8080"
     depends_on:
       - db-servicio-1
     volumes:
@@ -197,7 +197,7 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_traveler_container
     ports:
-      - "8082:8080"
+      - "8081:8080"
     depends_on:
       - db-servicio-2
     volumes:
@@ -214,11 +214,11 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_vehicle_container
     ports:
-     - "8083:8080"
+     - "8082:8080"
     depends_on:
       - db-servicio-3
     volumes:
-      - ./codigo-fuente/vehicle-service:/app
+      - ./codigo-fuente/vehicle-service/vehicle-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -231,7 +231,7 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_declaracion_container
     ports:
-      - "8084:8080"
+      - "8083:8080"
     depends_on:
       - db-servicio-4
     volumes:
@@ -249,11 +249,11 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_bodega_container
     ports:
-      - "8085:8080"
+      - "8084:8080"
     depends_on:
       - db-servicio-5
     volumes:
-      - ./codigo-fuente/bodega-service:/app
+      - ./codigo-fuente/bodega-service/bodega-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -266,7 +266,7 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_personal_container
     ports:
-      - "8086:8080"
+      - "8085:8080"
     depends_on:
       - db-servicio-6
     volumes:
@@ -283,11 +283,11 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_inspeccion_container
     ports:
-      - "8087:8080"
+      - "8086:8080"
     depends_on:
       - db-servicio-7
     volumes:
-      - ./codigo-fuente/inspeccion-service:/app
+      - ./codigo-fuente/inspeccion-service/inspeccion-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -300,11 +300,11 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_seguimiento_container
     ports:
-      - "8088:8080"
+      - "8087:8080"
     depends_on:
       - db-servicio-8
     volumes:
-      - ./codigo-fuente/seguimiento-service:/app
+      - ./codigo-fuente/seguimiento-service/seguimiento-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -317,11 +317,11 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_rutas_container
     ports:
-      - "8089:8080"
+      - "8088:8080"
     depends_on:
       - db-servicio-9
     volumes:
-      - ./codigo-fuente/rutas-service:/app
+      - ./codigo-fuente/rutas-service/ruta-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -334,7 +334,7 @@ services:
     image: maven:3.9-eclipse-temurin-21
     container_name: aduana_noti_container
     ports:
-      - "8090:8080"
+      - "8089:8080"
     depends_on:
       - db-servicio-10
     volumes:

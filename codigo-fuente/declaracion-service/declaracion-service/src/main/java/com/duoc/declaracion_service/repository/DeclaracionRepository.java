@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository//Marca esta interfaz para que Spring la gestione
-public interface DeclaracionRepository {
+public interface DeclaracionRepository extends JpaRepository<Declaracion, Long> {
 
     List<Declaracion> findAll();
     //Aquí heredamos los métodos save() y findAll() automáticamente
