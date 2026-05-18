@@ -1,6 +1,6 @@
 package com.duoc.cl.auth_service.dto;
 
-import jakarta.validation.constrainsts.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
