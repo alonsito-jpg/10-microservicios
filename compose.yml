@@ -185,7 +185,7 @@ services:
     depends_on:
       - db-servicio-1
     volumes:
-      - ./codigo-fuente/auth-service:/app
+      - ./codigo-fuente/auth-service/auth-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -201,7 +201,7 @@ services:
     depends_on:
       - db-servicio-2
     volumes:
-      - ./codigo-fuente/traveler-service:/app
+      - ./codigo-fuente/traveler-service/traveler-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -218,7 +218,7 @@ services:
     depends_on:
       - db-servicio-3
     volumes:
-      - ./codigo-fuente/vehicle-service:/app
+      - ./codigo-fuente/vehicle-service/vehicle-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -235,7 +235,7 @@ services:
     depends_on:
       - db-servicio-4
     volumes:
-      - ./codigo-fuente/declaracion-service:/app
+      - ./codigo-fuente/declaracion-service/declaracion-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -253,7 +253,7 @@ services:
     depends_on:
       - db-servicio-5
     volumes:
-      - ./codigo-fuente/bodega-service:/app
+      - ./codigo-fuente/bodega-service/bodega-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -270,7 +270,7 @@ services:
     depends_on:
       - db-servicio-6
     volumes:
-      - ./codigo-fuente/personal-service:/app #persistencia en el host
+      - ./codigo-fuente/personal-service/personal-service:/app #persistencia en el host
     working_dir: /app
     command: mvn spring-boot:run #Mantiene el contenedor vivo para programar  
     networks:
@@ -287,7 +287,7 @@ services:
     depends_on:
       - db-servicio-7
     volumes:
-      - ./codigo-fuente/inspeccion-service:/app
+      - ./codigo-fuente/inspeccion-service/inspeccion-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -304,7 +304,7 @@ services:
     depends_on:
       - db-servicio-8
     volumes:
-      - ./codigo-fuente/seguimiento-service:/app
+      - ./codigo-fuente/seguimiento-service/seguimiento-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -321,7 +321,7 @@ services:
     depends_on:
       - db-servicio-9
     volumes:
-      - ./codigo-fuente/rutas-service:/app
+      - ./codigo-fuente/rutas-service/ruta-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
@@ -338,7 +338,7 @@ services:
     depends_on:
       - db-servicio-10
     volumes:
-      - ./codigo-fuente/noti-service:/app
+      - ./codigo-fuente/noti-service/noti-service:/app
     working_dir: /app
     command: mvn spring-boot:run
     networks:
